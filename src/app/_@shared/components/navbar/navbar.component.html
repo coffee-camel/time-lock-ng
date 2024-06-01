@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
-  <span>Time Lock</span>
-  <button mat-raised-button (click)="logout()">Logout</button>
+  <span [style.cursor]="'pointer'" routerLink="/">Time Lock</span>
+  <div class="right-controls">
+    <a mat-button routerLink="/about">About</a>
+    <button mat-raised-button (click)="logout()">Logout</button>
+  </div>
 </mat-toolbar>

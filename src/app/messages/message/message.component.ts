@@ -1,35 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Message } from '_@core/messagesFirebase.service';
-
+import {
+  Message,
+  MessagesFirebaseService,
+} from '_@core/messagesFirebase.service';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrl: './message.component.scss'
+  styleUrl: './message.component.scss',
 })
 export class MessageComponent {
+  messagesService = inject(MessagesFirebaseService);
 
-  message: Message = {
-    title: 'my note',
-    content: 'my content',
-    delayInMinutes: .2
-  };
+  message: Message | undefined;
 
   timerFinished: boolean = false;
   countdownMilliseconds: number = 0;
   timerDisplay: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe((params) => {
       const messageId = params['id'];
-      console.log('messageId: ', messageId)
+      console.log('messageId: ', messageId);
+      this.messagesService.getMessage(messageId).subscribe((message) => {
+        this.message = message.data() as Message;
+        this.countdownMilliseconds = this.message.delayInMinutes * 60 * 1000;
+        this.startCountdown();
+      });
     });
-
-    this.countdownMilliseconds = this.message.delayInMinutes * 60 * 1000;
-    this.startCountdown();
   }
 
   startCountdown(): void {
@@ -40,7 +39,9 @@ export class MessageComponent {
       const seconds = ((this.countdownMilliseconds % 60000) / 1000).toFixed(0);
 
       // Display the timer
-      this.timerDisplay = `${minutes}:${(Number(seconds) < 10 ? '0' : '')}${seconds}`;
+      this.timerDisplay = `${minutes}:${
+        Number(seconds) < 10 ? '0' : ''
+      }${seconds}`;
 
       // Decrease remaining time
       this.countdownMilliseconds -= 1000;

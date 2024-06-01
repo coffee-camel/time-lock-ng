@@ -9,10 +9,12 @@ import { SharedModule } from './_@shared/shared.module';
 
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

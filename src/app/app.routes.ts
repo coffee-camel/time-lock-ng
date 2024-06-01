@@ -4,6 +4,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import { AboutComponent } from './about/about.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['messages']);
@@ -24,5 +25,9 @@ export const APP_ROUTES: Route[] = [
       import('./messages/messages.module').then((m) => m.MessagesModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
 ];

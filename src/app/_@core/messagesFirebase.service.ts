@@ -59,9 +59,9 @@ export class MessagesFirebaseService {
     return from(promise);
   }
 
-  // getMessage(messageId: string): Observable<Message> {
-  //   const docRef = doc(this.firestore, 'messages/' + messageId);
-  //   const promise = getDoc(docRef);
-  //   // return from(promise);
-  // }
+  getMessage(messageId: string) {
+    const docRef = doc(this.firestore, 'messages/' + messageId);
+    const promise = getDoc(docRef);
+    return from(promise);
+  }
 }
