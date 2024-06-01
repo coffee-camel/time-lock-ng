@@ -18,7 +18,9 @@ export class MessageService {
   constructor(private firestore: Firestore, private authService: AuthService) {}
 
   // Create a new message
-  async createMessage(title: string, content: string, delayInMinutes: number) {}
+  async createMessage(title: string, content: string, delayInMinutes: number) {
+    console.log('received data: ', { title, content, delayInMinutes });
+  }
 
   // Get all messages for the current user
   async getMessages() {}
