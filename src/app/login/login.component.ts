@@ -4,10 +4,10 @@ import { AuthService } from '_@core/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.container.html',
-  styleUrl: './login.container.scss',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
 })
-export class LoginContainer {
+export class LoginComponent {
   authMethodIndex: number = 0; // 0: login, 1: signup, 2: link
   loginForm: FormGroup;
   signupForm: FormGroup;
