@@ -1,18 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { SharedModule } from './_@shared/shared/shared.module';
+
+import { APP_ROUTES } from './app.routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    SharedModule,
+    RouterModule.forRoot(APP_ROUTES, {
+      enableTracing: true,
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+  }),
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync(),
+    provideFirebaseApp(() => initializeApp({"projectId":"timelock-b6fa1","appId":"1:772583398496:web:ac9d6c3fc192f8be3df705","storageBucket":"timelock-b6fa1.appspot.com","apiKey":"AIzaSyARYrmgK3wssim_BNCfjbVgn1MLLKcDUwE","authDomain":"timelock-b6fa1.firebaseapp.com","messagingSenderId":"772583398496","measurementId":"G-072LET2D1W"})),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
