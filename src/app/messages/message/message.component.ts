@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Message } from '_@core/message.service';
+import { Message } from '_@core/messagesFirebase.service';
+
 
 @Component({
   selector: 'app-message',

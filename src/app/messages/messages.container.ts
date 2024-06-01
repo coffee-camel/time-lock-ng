@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Message } from '_@core/message.service';
+import { Router } from '@angular/router';
+import { Message, MessagesFirebaseService } from '_@core/messagesFirebase.service';
 import { CreateMessageDialogComponent } from '_@shared/components';
 
 @Component({
@@ -8,32 +9,32 @@ import { CreateMessageDialogComponent } from '_@shared/components';
   templateUrl: './messages.container.html',
   styleUrl: './messages.container.scss',
 })
-export class MessagesContainer {
-  messages: Message[] = [
-    { title: 'Note 1', content: 'some content note 1', delayInMinutes: 1 },
-    { title: 'Note 2', content: 'some content note 2', delayInMinutes: 1 },
-    { title: 'Note 3', content: 'some content note 3', delayInMinutes: 1 },
-    { title: 'Note 3', content: 'some content note 4', delayInMinutes: 1 },
-  ];
+export class MessagesContainer implements OnInit {
+  messages: Message[] = [];
+  messagesService = inject(MessagesFirebaseService);
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private router: Router) {}
+
+  ngOnInit(): void {
+    this.messagesService.getMessages().subscribe((messages) => {
+      this.messages = messages;
+    })
+  }
 
   onMessageClick(message: Message) {
-    alert(`You clicked on ${message.title}`);
+    this.router.navigate(['/messages', message.id]);
   }
 
   openCreateMessageDialog() {
     const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
-      width: '400px', // Adjust the width as needed
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Message created successfully');
-        // Handle success
       } else {
         console.log('Message creation canceled or failed');
-        // Handle cancel or failure
       }
     });
   }
