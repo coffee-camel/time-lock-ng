@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '_@core/auth.service';
 
 @Component({
@@ -7,15 +8,41 @@ import { AuthService } from '_@core/auth.service';
   styleUrl: './login.container.scss',
 })
 export class LoginContainer {
-  email: string = '';
+  authMethodIndex: number = 0; // 0: login, 1: signup, 2: link
+  loginForm: FormGroup;
+  signupForm: FormGroup;
+  emailForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: ['']
+    });
+    this.signupForm = this.fb.group({
+      email: [''],
+      password: ['']
+    });
+    this.emailForm = this.fb.group({
+      email: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.authService.checkSignInLink();
   }
 
-  async sendSignInLink() {
-    await this.authService.sendSignInLink(this.email);
+  async onLogin() {
+    const { email, password } = this.loginForm.value;
+    await this.authService.loginWithEmailPassword(email, password);
+  }
+
+  async onSignup() {
+    const { email, password } = this.signupForm.value;
+    await this.authService.signUpWithEmailPassword(email, password);
+  }
+
+  async onSendLink() {
+    const { email } = this.emailForm.value;
+    await this.authService.sendSignInLink(email);
   }
 }

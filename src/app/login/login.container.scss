@@ -1,16 +1,38 @@
-.login-container {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-mat-card {
+.auth-card {
   width: 100%;
-  max-width: 400px;
-  margin: 16px;
+  max-width: 500px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-mat-card-title {
-  text-align: center;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 32px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  align-self: flex-end;
+}
+
+.mat-tab-group {
+  width: 100%;
+}
+
+.mat-tab-body-wrapper {
+  overflow: hidden !important; /* Prevents scrollbars on tab content */
 }

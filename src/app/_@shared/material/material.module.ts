@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -25,9 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatTabsModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
@@ -40,9 +42,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatTabsModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
-  ]
+    MatPaginatorModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

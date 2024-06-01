@@ -1,4 +1,5 @@
 export const environment = {
-    production: true,
-    mockAuth: false,
-  };
+  production: true,
+  mockAuth: false,
+  enableAuth: true,
+};

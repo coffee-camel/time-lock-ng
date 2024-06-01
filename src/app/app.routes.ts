@@ -9,7 +9,7 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['messages']);
 
 export const APP_ROUTES: Route[] = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'messages', pathMatch: 'full' },
 
   {
     path: 'login',
