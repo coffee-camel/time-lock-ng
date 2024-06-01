@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     SharedModule,
     RouterModule.forRoot(APP_ROUTES, {
-      enableTracing: true,
+      enableTracing: false,
       onSameUrlNavigation: 'reload',
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',

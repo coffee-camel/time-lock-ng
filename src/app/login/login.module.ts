@@ -6,6 +6,6 @@ import { LOGIN_ROUTES } from './login.routes';
 
 @NgModule({
   declarations: [LoginContainer],
-  imports: [SharedModule, RouterModule.forChild(LOGIN_ROUTES)],
+  imports: [ SharedModule, RouterModule.forChild(LOGIN_ROUTES)],
 })
 export class LoginModule {}
