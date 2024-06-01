@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../_@shared/shared/shared.module';
+import { SharedModule } from '../_@shared/shared.module';
 import { MessagesContainer } from './messages.container';
 import { RouterModule } from '@angular/router';
 import { MESSAGES_ROUTES } from './messages.routes';

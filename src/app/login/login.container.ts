@@ -1,10 +1,5 @@
-import { Component, Optional } from '@angular/core';
-import {
-  Auth,
-  isSignInWithEmailLink,
-  sendSignInLinkToEmail,
-  signInWithEmailLink,
-} from '@angular/fire/auth';
+import { Component } from '@angular/core';
+import { AuthService } from '_@core/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,45 +9,13 @@ import {
 export class LoginContainer {
   email: string = '';
 
-  constructor(@Optional() private auth: Auth) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.checkSignInLink();
+    this.authService.checkSignInLink();
   }
 
   async sendSignInLink() {
-    const actionCodeSettings = {
-      url: 'http://localhost:4200', // Update with your app's URL
-      handleCodeInApp: true,
-    };
-
-    sendSignInLinkToEmail(this.auth, this.email, actionCodeSettings)
-      .then(() => {
-        alert(`Sign in link was sent to ${this.email}`);
-        window.localStorage.setItem('emailForSignIn', this.email);
-        // ...
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  }
-
-  async checkSignInLink() {
-    if (isSignInWithEmailLink(this.auth, window.location.href)) {
-      let email = window.localStorage.getItem('emailForSignIn');
-      console.log('email from localstorage: ', email);
-      if (!email) {
-        email = window.prompt('Please provide your email for confirmation');
-        return;
-      }
-      signInWithEmailLink(this.auth, email, window.location.href)
-        .then((result) => {
-          window.localStorage.removeItem('emailForSignIn');
-          alert('Successfully signed in!');
-        })
-        .catch((error) => {
-          alert(error);
-        });
-    }
+    await this.authService.sendSignInLink(this.email);
   }
 }

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { COMPONENT_DECLARATIONS } from './components';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...COMPONENT_DECLARATIONS,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,6 +22,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule,
     MaterialModule,
+    ...COMPONENT_DECLARATIONS,
   ],
 })
 export class SharedModule {}

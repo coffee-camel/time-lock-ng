@@ -5,7 +5,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { SharedModule } from './_@shared/shared/shared.module';
+import { SharedModule } from './_@shared/shared.module';
 
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
