@@ -5,9 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod --base-href https://shady9600.github.io/time-lock-ng/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:prod",
     "deploy": "gh-pages -d dist"
   },
   "private": true,
