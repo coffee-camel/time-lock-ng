@@ -1,4 +1,21 @@
-<p>messages works!</p>
-<button mat-raised-button color="primary" (click)="openCreateMessageDialog()">
-  Create Message
-</button>
+<div class="responsive-container">
+  <div class="top-container">
+    <h2>Messages</h2>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openCreateMessageDialog()"
+    >
+      Create Message
+    </button>
+  </div>
+
+  <mat-list class="message-list">
+    <mat-list-item
+      *ngFor="let message of messages"
+      class="message-tile"
+      (click)="onMessageClick(message)"
+      >{{ message.title }}</mat-list-item
+    >
+  </mat-list>
+</div>
