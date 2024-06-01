@@ -1,6 +1,8 @@
 import { Injectable, Optional } from '@angular/core';
 import {
   Auth,
+  User,
+  authState,
   createUserWithEmailAndPassword,
   isSignInWithEmailLink,
   sendSignInLinkToEmail,
@@ -10,12 +12,19 @@ import {
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { environment } from '_@environment';
+import { EMPTY, Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Optional() private auth: Auth, private router: Router) {}
+  public readonly user$: Observable<User | null> = EMPTY;
+
+  constructor(@Optional() private auth: Auth, private router: Router) {
+    if (auth) {
+      this.user$ = authState(this.auth);
+    }
+  }
 
   async signUpWithEmailPassword(
     email: string,
@@ -69,6 +78,12 @@ export class AuthService {
         alert(error);
       }
     }
+  }
+
+  getCurrentUserId(): Observable<string | null> {
+    return this.user$.pipe(
+      map(user => user ? user.uid : null)
+    );
   }
 
   async logout(): Promise<void> {
