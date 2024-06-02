@@ -1,10 +1,6 @@
-:host {
+.responsive-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+  justify-content: space-around;
 }
 
 .auth-card {
@@ -12,6 +8,7 @@
   max-width: 500px;
   padding: 20px;
   box-sizing: border-box;
+  align-self: center;
 }
 
 .auth-form {
