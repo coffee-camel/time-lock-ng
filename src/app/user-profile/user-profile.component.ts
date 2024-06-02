@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '_@core/auth.service';
 import { ConfirmDialogComponent } from '_@shared/components';
+import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,7 +22,14 @@ export class UserProfileComponent {
 
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
+      width: '400px',
+      data: {
+        title: 'Warning',
+        message:
+          'Are you sure you want to delete your account? Your data will be permanently deleted.',
+        confirmButtonText: 'Yes, delete my account',
+        cancelButtonText: 'Cancel',
+      } as ConfirmDialogData,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

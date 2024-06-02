@@ -1,19 +1,43 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+// confirm-dialog.component.ts
+import { Component, Inject, Optional } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.scss',
+  styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
-  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>) {}
-
-  confirm(): void {
-    this.dialogRef.close('confirm');
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data?: ConfirmDialogData // Removed default parameter
+  ) {
+    if (!this.data) {
+      this.data = getDefaultData(); // Set default data if not provided
+    }
   }
 
-  cancel(): void {
-    this.dialogRef.close();
+  onConfirm(): void {
+    this.dialogRef.close(true);
   }
+
+  onCancel(): void {
+    this.dialogRef.close(false);
+  }
+}
+
+export interface ConfirmDialogData {
+  title: string;
+  message: string;
+  confirmButtonText: string;
+  cancelButtonText: string;
+}
+
+function getDefaultData(): ConfirmDialogData {
+  return {
+    title: 'Confirmation',
+    message: 'Are you sure?',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel'
+  };
 }

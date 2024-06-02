@@ -5,7 +5,11 @@ import {
   Message,
   MessagesFirebaseService,
 } from '_@core/messagesFirebase.service';
-import { CreateMessageDialogComponent } from '_@shared/components';
+import {
+  ConfirmDialogComponent,
+  CreateMessageDialogComponent,
+} from '_@shared/components';
+import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-messages',
@@ -46,10 +50,25 @@ export class MessagesContainer implements OnInit {
 
   onDeleteNote() {
     if (this.selectedMessage) {
-      this.messages = this.messages.filter(
-        (m) => m.id !== this.selectedMessage!.id
-      );
-      this.selectedMessage = null;
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '400px',
+        data: {
+          title: 'Confirmation',
+          message: 'Are you sure you want to delete this item?',
+          confirmButtonText: 'Yes, delete',
+          cancelButtonText: 'Cancel',
+        } as ConfirmDialogData,
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.messagesService
+            .removeMessage(this.selectedMessage?.id)
+            .subscribe(() => {
+              this.selectedMessage = null;
+            });
+        }
+      });
     }
   }
 }

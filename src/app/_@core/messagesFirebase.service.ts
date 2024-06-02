@@ -55,7 +55,7 @@ export class MessagesFirebaseService {
     return from(promise);
   }
 
-  removeMessage(messageId: string): Observable<void> {
+  removeMessage(messageId: string | undefined): Observable<void> {
     const docRef = doc(this.firestore, 'messages/' + messageId);
     const promise = deleteDoc(docRef);
     return from(promise);
