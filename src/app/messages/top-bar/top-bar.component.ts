@@ -9,7 +9,6 @@ import { Message } from '_@core/messagesFirebase.service';
 export class TopBarComponent {
   @Output() create = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
-  // @Output() search = new EventEmitter<string>();
   @Input() selectedMessage: Message | null = null;
 
   createNote() {
@@ -19,8 +18,4 @@ export class TopBarComponent {
   deleteNote() {
     this.delete.emit();
   }
-
-  // onSearch(query: string) {
-  //   this.search.emit(query);
-  // }
 }

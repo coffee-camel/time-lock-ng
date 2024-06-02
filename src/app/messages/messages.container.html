@@ -5,7 +5,13 @@
     [selectedMessage]="selectedMessage"
   ></app-top-bar>
   <div class="content-container">
-    <app-sidebar [messages]="messages" [selectedMessage]="selectedMessage" (messageSelected)="onMessageSelected($event)"></app-sidebar>
-    <app-message-display [message]="selectedMessage"></app-message-display>
+    <app-sidebar
+      [messages]="messages"
+      [selectedMessage]="selectedMessage"
+      (messageSelected)="onMessageSelected($event)"
+    ></app-sidebar>
+    <app-message-display
+      [message]="selectedMessage"
+    ></app-message-display>
   </div>
 </div>
