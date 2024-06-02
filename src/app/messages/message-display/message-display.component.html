@@ -1,0 +1,7 @@
+<div *ngIf="message; else noMessage">
+  <h2>{{ message.title }}</h2>
+  <p>{{ message.content }}</p>
+</div>
+<ng-template #noMessage>
+  <p>Select a message to view its content.</p>
+</ng-template>

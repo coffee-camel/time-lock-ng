@@ -1,0 +1,33 @@
+.mat-toolbar {
+  padding: 0; /* Remove padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensure items are centered vertically */
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30%; /* Match the sidebar width */
+}
+
+.divider {
+  border-left: 1px solid #ccc;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  width: 70%; /* Take up the remaining width */
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

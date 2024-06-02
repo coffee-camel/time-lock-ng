@@ -5,6 +5,8 @@ mat-toolbar {
 }
 
 .right-controls {
+  display: flex;
+  align-items: center;
   > *:not(:last-child) {
     margin-right: 20px;
   }

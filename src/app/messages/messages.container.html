@@ -1,21 +1,15 @@
-<div class="responsive-container">
-  <div class="top-container">
-    <h2>Messages</h2>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="openCreateMessageDialog()"
-    >
-      Create Message
-    </button>
+<div class="messages-container">
+  <div class="top-bar-container">
+    <app-top-bar-left
+      (create)="onCreateNote()"
+      (delete)="onDeleteNote()"
+      [selectedMessage]="selectedMessage"
+    ></app-top-bar-left>
+    <app-top-bar-right
+    ></app-top-bar-right>
   </div>
-
-  <mat-list class="message-list">
-    <mat-list-item
-      *ngFor="let message of messages"
-      class="message-tile"
-      (click)="onMessageClick(message)"
-      >{{ message.title }}</mat-list-item
-    >
-  </mat-list>
+  <div class="content-container">
+    <app-sidebar [messages]="messages" (messageSelected)="onMessageSelected($event)"></app-sidebar>
+    <app-message-display [message]="selectedMessage"></app-message-display>
+  </div>
 </div>

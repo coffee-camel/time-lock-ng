@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirm Delete</h2>
+<mat-dialog-content>
+  <p>
+    Are you sure you want to delete your account? This action cannot be undone.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="warn" (click)="confirm()">Delete</button>
+</mat-dialog-actions>

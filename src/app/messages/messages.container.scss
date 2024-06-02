@@ -1,12 +1,35 @@
-.top-container {
+.messages-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.message-list {
-  > *:not(:last-child) {
-    margin-bottom: 20px;
-  }
+.top-bar-container {
+  display: flex;
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  height: 100%;
+}
+
+app-sidebar {
+  width: 30vw;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+app-message-display {
+  // width: 70%;
+  padding: 20px;
+}
+
+app-top-bar-left {
+  width: 30vw;
+  border-right: 1px solid #ccc;
+}
+
+app-top-bar-right {
+  // width: 70%;
 }

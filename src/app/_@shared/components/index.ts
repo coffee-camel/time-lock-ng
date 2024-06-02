@@ -1,12 +1,18 @@
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { CreateMessageDialogComponent } from './create-message-dialog/create-message-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserMenuComponent } from './user-menu/user-menu.component';
 
 export {
-    CreateMessageDialogComponent,
-    NavbarComponent
+  ConfirmDialogComponent,
+  CreateMessageDialogComponent,
+  NavbarComponent,
+  UserMenuComponent,
 };
 
 export const COMPONENT_DECLARATIONS = [
-    CreateMessageDialogComponent,
-    NavbarComponent
+  ConfirmDialogComponent,
+  CreateMessageDialogComponent,
+  NavbarComponent,
+  UserMenuComponent
 ];

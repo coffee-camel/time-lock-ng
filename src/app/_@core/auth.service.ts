@@ -81,9 +81,11 @@ export class AuthService {
   }
 
   getCurrentUserId(): Observable<string | null> {
-    return this.user$.pipe(
-      map(user => user ? user.uid : null)
-    );
+    return this.user$.pipe(map((user) => (user ? user.uid : null)));
+  }
+
+  getCurrentUserEmail(): Observable<string | null> {
+    return this.user$.pipe(map((user) => (user ? user.email : null)));
   }
 
   async logout(): Promise<void> {
@@ -93,5 +95,21 @@ export class AuthService {
     } catch (error) {
       console.error('Logout error', error);
     }
+  }
+
+  deleteCurrentUserAccount() {
+    const user = authState(this.auth);
+    console.log('deleteCurrentUserAccount');
+    user.subscribe((user) => {
+      user
+        ?.delete()
+        .then(() => {
+          console.log('user deleted');
+          this.router.navigate(['/login']);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
   }
 }

@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <div class="top-bar-left">
+    <button
+      mat-icon-button
+      (click)="deleteNote()"
+      [disabled]="!selectedMessage"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <div class="divider"></div>
+  <div class="top-bar-right">
+    <button mat-icon-button (click)="createNote()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput (input)="onSearch($event.target.value)" placeholder="Search notes">
+      </mat-form-field> -->
+  </div>
+</mat-toolbar>

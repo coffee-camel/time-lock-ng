@@ -15,7 +15,7 @@ import { Observable, from } from 'rxjs';
 
 export interface Message {
   id?: string;
-  userId?: string;
+  uid?: string;
   title: string;
   content: string;
   delayInMinutes: number;
@@ -29,7 +29,7 @@ export class MessagesFirebaseService {
   firestore = inject(Firestore);
   messagesCollection = collection(this.firestore, 'messages');
 
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
   getMessages(): Observable<Message[]> {
     return collectionData(this.messagesCollection, {
@@ -38,11 +38,13 @@ export class MessagesFirebaseService {
   }
 
   addMessage(
+    uid: string,
     title: string,
     content: string,
     delayInMinutes: number
   ): Observable<string> {
     const messageToCreate = {
+      uid,
       title,
       content,
       delayInMinutes,

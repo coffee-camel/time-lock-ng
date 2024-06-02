@@ -11,12 +11,18 @@ import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LoginFormComponent } from './login/login-form/login-form.component';
+import { SignUpFormComponent } from './login/sign-up-form/sign-up-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent,
+    LoginFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,

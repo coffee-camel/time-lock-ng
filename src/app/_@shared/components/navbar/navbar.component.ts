@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { AuthService } from '_@core/auth.service';
 
 @Component({
@@ -7,9 +8,9 @@ import { AuthService } from '_@core/auth.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(private authService: AuthService) {}
+  isLoggedIn: boolean = false;
 
-  async logout() {
-    await this.authService.logout();
+  constructor(private authService: AuthService) {
+    this.authService.user$.subscribe((user) => (this.isLoggedIn = !!user));
   }
 }

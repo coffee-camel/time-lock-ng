@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
-  <span [style.cursor]="'pointer'" routerLink="/">Time Lock</span>
+  <span [style.cursor]="'pointer'" routerLink="/">TimeLock</span>
   <div class="right-controls">
     <a mat-button routerLink="/about">About</a>
-    <button mat-raised-button (click)="logout()">Logout</button>
+    <app-user-menu *ngIf="isLoggedIn"></app-user-menu>
   </div>
 </mat-toolbar>
