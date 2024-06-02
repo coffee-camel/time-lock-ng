@@ -1,13 +1,9 @@
 <div class="messages-container">
-  <div class="top-bar-container">
-    <app-top-bar-left
-      (create)="onCreateNote()"
-      (delete)="onDeleteNote()"
-      [selectedMessage]="selectedMessage"
-    ></app-top-bar-left>
-    <app-top-bar-right
-    ></app-top-bar-right>
-  </div>
+  <app-top-bar
+    (create)="onCreateNote()"
+    (delete)="onDeleteNote()"
+    [selectedMessage]="selectedMessage"
+  ></app-top-bar>
   <div class="content-container">
     <app-sidebar [messages]="messages" (messageSelected)="onMessageSelected($event)"></app-sidebar>
     <app-message-display [message]="selectedMessage"></app-message-display>

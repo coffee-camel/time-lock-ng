@@ -6,6 +6,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+* {
+  box-sizing: border-box;
+}
+
 .responsive-container {
     margin: 0 auto;
     padding: 1rem;

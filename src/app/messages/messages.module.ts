@@ -8,11 +8,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { MessageDisplayComponent } from './message-display/message-display.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { TopBarLeftComponent } from './top-bar-left/top-bar-left.component';
-import { TopBarRightComponent } from './top-bar-right/top-bar-right.component';
 
 @NgModule({
-  declarations: [MessagesContainer, MessageComponent, SidebarComponent, SidebarItemComponent, MessageDisplayComponent, TopBarComponent, TopBarLeftComponent, TopBarRightComponent],
+  declarations: [
+    MessagesContainer,
+    MessageComponent,
+    SidebarComponent,
+    SidebarItemComponent,
+    MessageDisplayComponent,
+    TopBarComponent,
+  ],
   imports: [SharedModule, RouterModule.forChild(MESSAGES_ROUTES)],
 })
 export class MessagesModule {}
