@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from '_@core/auth.service';
 import {
   Message,
   MessagesFirebaseService,
@@ -18,6 +19,7 @@ import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-di
 })
 export class MessagesContainer implements OnInit {
   messagesService = inject(MessagesFirebaseService);
+  authService = inject(AuthService);
 
   messages: Message[] = [];
   selectedMessage: Message | null = null;
@@ -25,9 +27,14 @@ export class MessagesContainer implements OnInit {
   constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
-    this.messagesService.getMessages().subscribe((messages) => {
-      this.messages = messages;
-    });
+    this.authService.getCurrentUserId().subscribe((uid) => {
+      if (uid) {
+        this.messagesService.getMessages(uid).subscribe((messages) => {
+          this.messages = messages;
+        });
+      }
+    })
+    
   }
 
   onMessageSelected(message: Message) {

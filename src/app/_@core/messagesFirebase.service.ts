@@ -7,8 +7,9 @@ import {
   collectionData,
   deleteDoc,
   doc,
-  docData,
   getDoc,
+  query,
+  where,
 } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { Observable, from } from 'rxjs';
@@ -31,8 +32,10 @@ export class MessagesFirebaseService {
 
   constructor() {}
 
-  getMessages(): Observable<Message[]> {
-    return collectionData(this.messagesCollection, {
+  getMessages(uid: string): Observable<Message[]> {
+    const q = query(this.messagesCollection, where('uid', '==', uid))
+
+    return collectionData(q, {
       idField: 'id',
     }) as Observable<Message[]>;
   }
