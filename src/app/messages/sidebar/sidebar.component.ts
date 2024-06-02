@@ -8,6 +8,7 @@ import { Message } from '_@core/messagesFirebase.service';
 })
 export class SidebarComponent {
   @Input() messages: Message[] = [];
+  @Input() selectedMessage: Message | null = null;
   @Output() messageSelected = new EventEmitter<Message>();
 
   selectMessage(message: Message) {

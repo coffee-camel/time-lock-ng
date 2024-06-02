@@ -3,6 +3,7 @@
     <app-sidebar-item
       [message]="message"
       (click)="selectMessage(message)"
+      [isSelected]="selectedMessage === message"
     ></app-sidebar-item>
   </ng-container>
 </div>

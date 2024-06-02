@@ -8,4 +8,5 @@ import { Message } from '_@core/messagesFirebase.service';
 })
 export class SidebarItemComponent {
   @Input() message!: Message;
+  @Input() isSelected: boolean = false;
 }

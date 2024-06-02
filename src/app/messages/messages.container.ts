@@ -31,34 +31,25 @@ export class MessagesContainer implements OnInit {
   }
 
   onCreateNote() {
-    // Logic to create a new note
-    const newMessage: Message = {
-      id: (this.messages.length + 1).toString(),
-      title: 'New Message',
-      content: 'This is a new message.',
-      delayInMinutes: 5
-    };
-    this.messages.push(newMessage);
+    const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Message created successfully');
+      } else {
+        console.log('Message creation canceled or failed');
+      }
+    });
   }
 
   onDeleteNote() {
     if (this.selectedMessage) {
-      this.messages = this.messages.filter(m => m.id !== this.selectedMessage!.id);
+      this.messages = this.messages.filter(
+        (m) => m.id !== this.selectedMessage!.id
+      );
       this.selectedMessage = null;
     }
   }
-
-  // openCreateMessageDialog() {
-  //   const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
-  //     width: '400px',
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       console.log('Message created successfully');
-  //     } else {
-  //       console.log('Message creation canceled or failed');
-  //     }
-  //   });
-  // }
 }
