@@ -4,8 +4,8 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { AboutComponent } from './about/about.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AboutComponent } from './_@features/about/about.component';
+import { UserProfileComponent } from './_@features/user-profile/user-profile.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
 const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['notes']);

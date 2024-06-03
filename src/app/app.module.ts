@@ -9,8 +9,8 @@ import { SharedModule } from './_@shared/shared.module';
 
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AboutComponent } from './_@features/about/about.component';
+import { UserProfileComponent } from './_@features/user-profile/user-profile.component';
 import { environment } from '_@environment';
 
 @NgModule({
