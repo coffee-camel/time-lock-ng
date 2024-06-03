@@ -5,18 +5,18 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['messages']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
+const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['notes']);
 
 export const APP_ROUTES: Route[] = [
   { path: '', redirectTo: 'notes', pathMatch: 'full' },
 
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('./_@features/auth/auth.module').then((m) => m.AuthModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectLoggedInToSendEmail },
   },

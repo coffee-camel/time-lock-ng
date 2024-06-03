@@ -89,7 +89,7 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await signOut(this.auth);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth']);
     } catch (error) {
       console.error('Logout error', error);
     }
@@ -101,7 +101,7 @@ export class AuthService {
       user
         ?.delete()
         .then(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth']);
         })
         .catch((err) => {
           console.error(err);
