@@ -18,12 +18,20 @@
       >
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        formControlName="delayInMinutes"
-        placeholder="Delay in Minutes"
-        type="number"
-      />
+      <div style="display: flex; align-items: center">
+        <input
+          matInput
+          formControlName="delayInMinutes"
+          placeholder="Delay in Minutes"
+          type="number"
+        />
+        <mat-icon
+          matTooltip="Set the delay in minutes before this note unlocks. You won't be able to view or edit the note until it unlocks."
+          aria-label="Delay in Minutes Tooltip"
+          style="margin-left: 8px; cursor: pointer"
+          >help_outline</mat-icon
+        >
+      </div>
       <mat-error *ngIf="messageForm.get('delayInMinutes')?.invalid">
         Delay in Minutes is required and must be at least 1
       </mat-error>

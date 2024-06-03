@@ -1,13 +1,13 @@
 <button mat-icon-button [matMenuTriggerFor]="userMenu">
-  <mat-icon>account_circle</mat-icon>
+  <mat-icon aria-label="Open User Menu Button">account_circle</mat-icon>
 </button>
 <mat-menu #userMenu="matMenu">
   <button mat-menu-item (click)="navigateToProfile()">
-    <mat-icon>person</mat-icon>
+    <mat-icon aria-label="Navigate to User Profile Button">person</mat-icon>
     <span>Profile</span>
   </button>
   <button mat-menu-item (click)="logout()">
-    <mat-icon>logout</mat-icon>
+    <mat-icon aria-label="Logout Button">logout</mat-icon>
     <span>Logout</span>
   </button>
 </mat-menu>

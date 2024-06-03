@@ -1,6 +1,6 @@
 .mat-toolbar {
-  padding: 0 !important; /* Ensure no padding */
-  box-sizing: border-box; /* Ensure consistent box sizing */
+  padding: 0 !important;
+  box-sizing: border-box;
 }
 
 .mat-toolbar {
@@ -12,25 +12,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: calc(
-    30% - 0.5px
-  ); /* Adjust the width to account for 1 pixel discrepancy */
-  padding-left: 0; /* Ensure no extra padding */
+  width: calc(30% - 0.5px);
+  padding-left: 10px;
   padding-right: 10px;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box;
 }
 
 .divider {
   border-left: 1px solid #ccc;
   height: 100%;
-  // margin: 0 10px;
 }
 
 .top-bar-right {
   display: flex;
   align-items: center;
   padding-left: 10px;
-  width: 70%; /* Take up the remaining width */
+  width: 70%;
 }
 
 .mat-form-field {
