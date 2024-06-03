@@ -4,7 +4,6 @@ import { MessagesContainer } from './messages.container';
 import { RouterModule } from '@angular/router';
 import { MESSAGES_ROUTES } from './messages.routes';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { MessageDisplayComponent } from './message-display/message-display.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 
@@ -12,7 +11,6 @@ import { TopBarComponent } from './top-bar/top-bar.component';
   declarations: [
     MessagesContainer,
     SidebarComponent,
-    SidebarItemComponent,
     MessageDisplayComponent,
     TopBarComponent,
   ],

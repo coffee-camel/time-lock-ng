@@ -1,9 +1,15 @@
-<div class="sidebar">
-  <ng-container *ngFor="let message of messages">
-    <app-sidebar-item
-      [message]="message"
-      (click)="selectMessage(message)"
-      [isSelected]="selectedMessage === message"
-    ></app-sidebar-item>
+<div class="sidebar" [ngClass]="{ 'no-items': messages.length === 0 }">
+  <ng-container *ngIf="messages.length > 0; else noNotes">
+    <div 
+      *ngFor="let message of messages"
+      class="sidebar-item" 
+      [ngClass]="{ 'selected': selectedMessage === message }"
+      (click)="selectMessage(message)">
+      <p>{{ message.title }}</p> 
+    </div>
   </ng-container>
 </div>
+
+<ng-template #noNotes>
+  <div class="no-notes">No notes</div>
+</ng-template>

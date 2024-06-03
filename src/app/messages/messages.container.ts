@@ -37,6 +37,14 @@ export class MessagesContainer implements OnInit {
     
   }
 
+  /**
+   * Sets the current selected message. This is passed into the 
+   * message view component to display the selected message. It is 
+   * also passed back into the sidebar container so it can highlight
+   * selected message.
+   * 
+   * @param message 
+   */
   onMessageSelected(message: Message) {
     this.selectedMessage = message;
   }

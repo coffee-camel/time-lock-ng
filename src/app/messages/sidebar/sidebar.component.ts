@@ -11,6 +11,11 @@ export class SidebarComponent {
   @Input() selectedMessage: Message | null = null;
   @Output() messageSelected = new EventEmitter<Message>();
 
+  /**
+   * Emits the selected message back to the parent messages container.
+   * 
+   * @param message 
+   */
   selectMessage(message: Message) {
     this.messageSelected.emit(message);
   }

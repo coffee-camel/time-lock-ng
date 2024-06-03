@@ -1,3 +1,28 @@
 .sidebar {
   width: 100%;
 }
+
+.sidebar-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &.selected {
+    background-color: #e0e0e0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.no-notes {
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}

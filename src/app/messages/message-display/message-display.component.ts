@@ -56,7 +56,6 @@ export class MessageDisplayComponent {
   }
 
   clearInterval(): void {
-    // Clear any existing interval
     clearInterval(this.timerInterval);
   }
 }
