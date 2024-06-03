@@ -24,6 +24,13 @@ export class MessagesContainer implements OnInit {
   messages: Message[] = [];
   selectedMessage: Message | null = null;
 
+  public state: any = {
+    model: {},
+    status: {
+      isTimerFinished: false,
+    },
+  };
+
   constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
@@ -66,7 +73,7 @@ export class MessagesContainer implements OnInit {
     if (this.selectedMessage) {
       const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
         width: '400px',
-        data: this.selectedMessage
+        data: this.selectedMessage,
       });
 
       dialogRef.afterClosed().subscribe((result) => {
@@ -101,5 +108,9 @@ export class MessagesContainer implements OnInit {
         }
       });
     }
+  }
+
+  onTimerFinished(isTimerFinished: boolean) {
+    this.state.status.isTimerFinished = isTimerFinished;
   }
 }

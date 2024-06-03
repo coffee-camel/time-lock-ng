@@ -16,7 +16,7 @@
     <button
       mat-icon-button
       (click)="editNote()"
-      [disabled]="!selectedMessage"
+      [disabled]="!selectedMessage || !timerFinished"
     >
       <mat-icon>edit</mat-icon>
     </button>
