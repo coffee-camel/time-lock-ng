@@ -12,7 +12,7 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['messages']);
 
 export const APP_ROUTES: Route[] = [
-  { path: '', redirectTo: 'messages', pathMatch: 'full' },
+  { path: '', redirectTo: 'notes', pathMatch: 'full' },
 
   {
     path: 'login',
@@ -21,9 +21,9 @@ export const APP_ROUTES: Route[] = [
     data: { authGuardPipe: redirectLoggedInToSendEmail },
   },
   {
-    path: 'messages',
+    path: 'notes',
     loadChildren: () =>
-      import('./messages/messages.module').then((m) => m.MessagesModule),
+      import('./_@features/notes/notes.module').then((m) => m.NotesModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

@@ -13,11 +13,10 @@ import {
 import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.container.html',
-  styleUrl: './messages.container.scss',
+  templateUrl: './notes.container.html',
+  styleUrl: './notes.container.scss',
 })
-export class MessagesContainer implements OnInit {
+export class NotesContainer implements OnInit {
   messagesService = inject(MessagesFirebaseService);
   authService = inject(AuthService);
 

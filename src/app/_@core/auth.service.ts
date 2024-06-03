@@ -49,7 +49,7 @@ export class AuthService {
 
   async sendSignInLink(email: string): Promise<void> {
     const actionCodeSettings = {
-      url: 'http://localhost:4200/messages', // Update with your app's URL
+      url: 'http://localhost:4200/notes', // Update with your app's URL
       handleCodeInApp: true,
     };
 
@@ -71,7 +71,7 @@ export class AuthService {
       }
       try {
         await signInWithEmailLink(this.auth, email, window.location.href);
-        this.router.navigate(['/messages']);
+        this.router.navigate(['/notes']);
       } catch (error) {
         alert(error);
       }
