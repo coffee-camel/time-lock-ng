@@ -19,4 +19,10 @@ export class SidebarComponent {
   selectMessage(message: Message) {
     this.messageSelected.emit(message);
   }
+
+  getFormattedDelay(delayInMinutes: number): string {
+    const hours = Math.floor(delayInMinutes / 60);
+    const minutes = delayInMinutes % 60;
+    return `${hours ? hours + 'h ' : ''}${minutes}m`;
+  }
 }

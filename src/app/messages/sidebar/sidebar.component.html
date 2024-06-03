@@ -5,7 +5,13 @@
       class="sidebar-item" 
       [ngClass]="{ 'selected': selectedMessage === message }"
       (click)="selectMessage(message)">
-      <p>{{ message.title }}</p> 
+      <div class="message-header">
+        <p>{{ message.title }}</p>
+        <div class="message-timer">
+          <mat-icon>lock</mat-icon>
+          <span>{{ getFormattedDelay(message.delayInMinutes) }}</span>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>
