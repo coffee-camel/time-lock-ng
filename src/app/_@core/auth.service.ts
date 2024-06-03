@@ -32,7 +32,6 @@ export class AuthService {
   ): Promise<void> {
     try {
       await createUserWithEmailAndPassword(this.auth, email, password);
-      alert('Successfully signed up!');
       this.router.navigate(['/']);
     } catch (error) {
       alert(error);
@@ -42,7 +41,6 @@ export class AuthService {
   async loginWithEmailPassword(email: string, password: string): Promise<void> {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
-      alert('Successfully logged in!');
       this.router.navigate(['/']);
     } catch (error) {
       alert(error);

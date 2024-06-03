@@ -1,14 +1,19 @@
 <mat-toolbar>
   <div class="top-bar-left">
-    <button mat-icon-button (click)="createNote()">
-      <mat-icon aria-label="Add New Note Button">add</mat-icon>
+    <button
+      mat-icon-button
+      (click)="createNote()"
+      aria-label="Add New Note Button"
+    >
+      <mat-icon>add</mat-icon>
     </button>
     <button
       mat-icon-button
       (click)="deleteNote()"
       [disabled]="!selectedMessage"
+      aria-label="Delete Selected Note Button"
     >
-      <mat-icon aria-label="Delete Selected Note Button">delete</mat-icon>
+      <mat-icon>delete</mat-icon>
     </button>
   </div>
   <div class="divider"></div>
@@ -17,8 +22,9 @@
       mat-icon-button
       (click)="editNote()"
       [disabled]="!selectedMessage || !timerFinished"
+      aria-label="Edit Selected Note Button"
     >
-      <mat-icon aria-label="Edit Selected Note Button">edit</mat-icon>
+      <mat-icon>edit</mat-icon>
     </button>
   </div>
 </mat-toolbar>
