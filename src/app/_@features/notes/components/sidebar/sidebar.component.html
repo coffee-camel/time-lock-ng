@@ -1,0 +1,21 @@
+<div class="sidebar" [ngClass]="{ 'no-items': messages.length === 0 }">
+  <ng-container *ngIf="messages.length > 0; else noNotes">
+    <div 
+      *ngFor="let message of messages"
+      class="sidebar-item" 
+      [ngClass]="{ 'selected': selectedMessage === message }"
+      (click)="selectMessage(message)">
+      <div class="message-header">
+        <p>{{ message.title }}</p>
+        <div class="message-timer">
+          <mat-icon>lock</mat-icon>
+          <span>{{ getFormattedDelay(message.delayInMinutes) }}</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noNotes>
+  <div class="no-notes">No notes</div>
+</ng-template>

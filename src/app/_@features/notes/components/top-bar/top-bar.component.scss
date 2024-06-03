@@ -1,0 +1,43 @@
+.mat-toolbar {
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(30% - 0.5px);
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.divider {
+  border-left: 1px solid #ccc;
+  height: 100%;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 70%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  padding: 0 10px;
+}

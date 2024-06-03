@@ -4,26 +4,26 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AboutComponent } from './_@features/about/about.component';
+import { UserProfileComponent } from './_@features/user-profile/user-profile.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['messages']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
+const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['notes']);
 
 export const APP_ROUTES: Route[] = [
-  { path: '', redirectTo: 'messages', pathMatch: 'full' },
+  { path: '', redirectTo: 'notes', pathMatch: 'full' },
 
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('./_@features/auth/auth.module').then((m) => m.AuthModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectLoggedInToSendEmail },
   },
   {
-    path: 'messages',
+    path: 'notes',
     loadChildren: () =>
-      import('./messages/messages.module').then((m) => m.MessagesModule),
+      import('./_@features/notes/notes.module').then((m) => m.NotesModule),
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

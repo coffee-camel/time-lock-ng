@@ -13,16 +13,22 @@ import {
 import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.container.html',
-  styleUrl: './messages.container.scss',
+  templateUrl: './notes.container.html',
+  styleUrl: './notes.container.scss',
 })
-export class MessagesContainer implements OnInit {
+export class NotesContainer implements OnInit {
   messagesService = inject(MessagesFirebaseService);
   authService = inject(AuthService);
 
   messages: Message[] = [];
   selectedMessage: Message | null = null;
+
+  public state: any = {
+    model: {},
+    status: {
+      isTimerFinished: false,
+    },
+  };
 
   constructor(private dialog: MatDialog, private router: Router) {}
 
@@ -33,10 +39,17 @@ export class MessagesContainer implements OnInit {
           this.messages = messages;
         });
       }
-    })
-    
+    });
   }
 
+  /**
+   * Sets the current selected message. This is passed into the
+   * message view component to display the selected message. It is
+   * also passed back into the sidebar container so it can highlight
+   * selected message.
+   *
+   * @param message
+   */
   onMessageSelected(message: Message) {
     this.selectedMessage = message;
   }
@@ -53,6 +66,23 @@ export class MessagesContainer implements OnInit {
         console.log('Message creation canceled or failed');
       }
     });
+  }
+
+  onEditNote() {
+    if (this.selectedMessage) {
+      const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
+        width: '400px',
+        data: this.selectedMessage,
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          console.log('Message edited successfully');
+        } else {
+          console.log('Message edit canceled or failed');
+        }
+      });
+    }
   }
 
   onDeleteNote() {
@@ -77,5 +107,9 @@ export class MessagesContainer implements OnInit {
         }
       });
     }
+  }
+
+  onTimerFinished(isTimerFinished: boolean) {
+    this.state.status.isTimerFinished = isTimerFinished;
   }
 }

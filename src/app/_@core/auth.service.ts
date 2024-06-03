@@ -32,7 +32,6 @@ export class AuthService {
   ): Promise<void> {
     try {
       await createUserWithEmailAndPassword(this.auth, email, password);
-      alert('Successfully signed up!');
       this.router.navigate(['/']);
     } catch (error) {
       alert(error);
@@ -42,7 +41,6 @@ export class AuthService {
   async loginWithEmailPassword(email: string, password: string): Promise<void> {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
-      alert('Successfully logged in!');
       this.router.navigate(['/']);
     } catch (error) {
       alert(error);
@@ -51,7 +49,7 @@ export class AuthService {
 
   async sendSignInLink(email: string): Promise<void> {
     const actionCodeSettings = {
-      url: 'http://localhost:4200/messages', // Update with your app's URL
+      url: 'http://localhost:4200/notes', // Update with your app's URL
       handleCodeInApp: true,
     };
 
@@ -73,7 +71,7 @@ export class AuthService {
       }
       try {
         await signInWithEmailLink(this.auth, email, window.location.href);
-        this.router.navigate(['/messages']);
+        this.router.navigate(['/notes']);
       } catch (error) {
         alert(error);
       }
@@ -91,7 +89,7 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await signOut(this.auth);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth']);
     } catch (error) {
       console.error('Logout error', error);
     }
@@ -99,13 +97,11 @@ export class AuthService {
 
   deleteCurrentUserAccount() {
     const user = authState(this.auth);
-    console.log('deleteCurrentUserAccount');
     user.subscribe((user) => {
       user
         ?.delete()
         .then(() => {
-          console.log('user deleted');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth']);
         })
         .catch((err) => {
           console.error(err);

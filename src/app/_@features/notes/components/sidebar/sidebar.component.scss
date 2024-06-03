@@ -1,0 +1,45 @@
+.sidebar {
+  width: 100%;
+}
+
+.sidebar-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &.selected {
+    background-color: #e0e0e0;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .message-timer {
+      display: flex;
+      align-items: baseline;
+      font-size: 0.8em;
+      color: #757575;
+
+      mat-icon {
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+.no-notes {
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}

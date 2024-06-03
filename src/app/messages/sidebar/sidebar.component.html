@@ -1,9 +1,0 @@
-<div class="sidebar">
-  <ng-container *ngFor="let message of messages">
-    <app-sidebar-item
-      [message]="message"
-      (click)="selectMessage(message)"
-      [isSelected]="selectedMessage === message"
-    ></app-sidebar-item>
-  </ng-container>
-</div>

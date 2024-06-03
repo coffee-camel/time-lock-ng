@@ -3,11 +3,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '_@core/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './auth.container.html',
+  styleUrl: './auth.container.scss',
 })
-export class LoginComponent {
+export class AuthContainer {
   authMethodIndex: number = 0; // 0: login, 1: signup, 2: link
   emailForm: FormGroup;
 

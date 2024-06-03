@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Message } from '_@core/messagesFirebase.service';
 
 @Component({
@@ -9,10 +9,14 @@ import { Message } from '_@core/messagesFirebase.service';
 export class MessageDisplayComponent {
   private _message: Message | null = null;
 
+  @Output() timerFinished = new EventEmitter<boolean>();
+
   @Input()
   set message(value: Message | null) {
     this._message = value;
-    this.timerFinished = false;
+    this.isTimerFinished = false;
+    this.timerFinished.emit(false);
+
     if (this._message) {
       this.countdownMilliseconds = this._message.delayInMinutes * 60 * 1000;
       this.startCountdown();
@@ -22,7 +26,7 @@ export class MessageDisplayComponent {
     return this._message;
   }
 
-  timerFinished: boolean = false;
+  isTimerFinished: boolean = false;
   countdownMilliseconds: number = 0;
   timerDisplay: string = '';
   private timerInterval: any;
@@ -47,7 +51,8 @@ export class MessageDisplayComponent {
         if (this.countdownMilliseconds < 0) {
           this.clearInterval(); // Clear interval when countdown finishes
           this.timerDisplay = '0:00';
-          this.timerFinished = true;
+          this.isTimerFinished = true;
+          this.timerFinished.emit(true);
         }
       } else {
         this.clearInterval(); // Clear interval if message is null or undefined
@@ -56,7 +61,6 @@ export class MessageDisplayComponent {
   }
 
   clearInterval(): void {
-    // Clear any existing interval
     clearInterval(this.timerInterval);
   }
 }

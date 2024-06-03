@@ -2,7 +2,9 @@
   <app-top-bar
     (create)="onCreateNote()"
     (delete)="onDeleteNote()"
+    (edit)="onEditNote()"
     [selectedMessage]="selectedMessage"
+    [timerFinished]="state.status.isTimerFinished"
   ></app-top-bar>
   <div class="content-container">
     <app-sidebar
@@ -12,6 +14,7 @@
     ></app-sidebar>
     <app-message-display
       [message]="selectedMessage"
+      (timerFinished)="onTimerFinished($event)"
     ></app-message-display>
   </div>
 </div>
