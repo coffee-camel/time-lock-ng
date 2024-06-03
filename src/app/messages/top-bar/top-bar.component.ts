@@ -9,7 +9,9 @@ import { Message } from '_@core/messagesFirebase.service';
 export class TopBarComponent {
   @Output() create = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
   @Input() selectedMessage: Message | null = null;
+  @Input() timerFinished: boolean = false;
 
   createNote() {
     this.create.emit();
@@ -17,5 +19,9 @@ export class TopBarComponent {
 
   deleteNote() {
     this.delete.emit();
+  }
+
+  editNote() {
+    this.edit.emit();
   }
 }

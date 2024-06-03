@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Create Message</h2>
+<h2 mat-dialog-title>{{ isEditMode ? "Edit Note" : "Create Note" }}</h2>
 <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
@@ -31,7 +31,7 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button [disabled]="!messageForm.valid" type="submit">
-      Submit
+      {{ isEditMode ? "Update" : "Create" }}
     </button>
     <button mat-button (click)="onCancel()">Cancel</button>
   </mat-dialog-actions>

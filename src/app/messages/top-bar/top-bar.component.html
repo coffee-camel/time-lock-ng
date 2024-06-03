@@ -1,5 +1,8 @@
 <mat-toolbar>
   <div class="top-bar-left">
+    <button mat-icon-button (click)="createNote()">
+      <mat-icon>add</mat-icon>
+    </button>
     <button
       mat-icon-button
       (click)="deleteNote()"
@@ -10,8 +13,12 @@
   </div>
   <div class="divider"></div>
   <div class="top-bar-right">
-    <button mat-icon-button (click)="createNote()">
-      <mat-icon>add</mat-icon>
+    <button
+      mat-icon-button
+      (click)="editNote()"
+      [disabled]="!selectedMessage"
+    >
+      <mat-icon>edit</mat-icon>
     </button>
   </div>
 </mat-toolbar>

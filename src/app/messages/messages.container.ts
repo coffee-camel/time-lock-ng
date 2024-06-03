@@ -33,17 +33,16 @@ export class MessagesContainer implements OnInit {
           this.messages = messages;
         });
       }
-    })
-    
+    });
   }
 
   /**
-   * Sets the current selected message. This is passed into the 
-   * message view component to display the selected message. It is 
+   * Sets the current selected message. This is passed into the
+   * message view component to display the selected message. It is
    * also passed back into the sidebar container so it can highlight
    * selected message.
-   * 
-   * @param message 
+   *
+   * @param message
    */
   onMessageSelected(message: Message) {
     this.selectedMessage = message;
@@ -61,6 +60,23 @@ export class MessagesContainer implements OnInit {
         console.log('Message creation canceled or failed');
       }
     });
+  }
+
+  onEditNote() {
+    if (this.selectedMessage) {
+      const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
+        width: '400px',
+        data: this.selectedMessage
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          console.log('Message edited successfully');
+        } else {
+          console.log('Message edit canceled or failed');
+        }
+      });
+    }
   }
 
   onDeleteNote() {

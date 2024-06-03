@@ -11,7 +11,7 @@
 .top-bar-left {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: calc(
     30% - 0.5px
   ); /* Adjust the width to account for 1 pixel discrepancy */

@@ -9,9 +9,9 @@ import {
   doc,
   getDoc,
   query,
+  setDoc,
   where,
 } from '@angular/fire/firestore';
-import { AuthService } from './auth.service';
 import { Observable, from } from 'rxjs';
 
 export interface Message {
@@ -33,7 +33,7 @@ export class MessagesFirebaseService {
   constructor() {}
 
   getMessages(uid: string): Observable<Message[]> {
-    const q = query(this.messagesCollection, where('uid', '==', uid))
+    const q = query(this.messagesCollection, where('uid', '==', uid));
 
     return collectionData(q, {
       idField: 'id',
@@ -55,6 +55,15 @@ export class MessagesFirebaseService {
     const promise = addDoc(this.messagesCollection, messageToCreate).then(
       (response) => response.id
     );
+    return from(promise);
+  }
+
+  editMessage(
+    messageId: string,
+    dataToUpdate: { title: string; content: string; delayInMinutes: number }
+  ): Observable<void> {
+    const docRef = doc(this.firestore, 'messages/' + messageId);
+    const promise = setDoc(docRef, dataToUpdate, { merge: true });
     return from(promise);
   }
 

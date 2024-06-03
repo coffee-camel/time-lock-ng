@@ -99,12 +99,10 @@ export class AuthService {
 
   deleteCurrentUserAccount() {
     const user = authState(this.auth);
-    console.log('deleteCurrentUserAccount');
     user.subscribe((user) => {
       user
         ?.delete()
         .then(() => {
-          console.log('user deleted');
           this.router.navigate(['/login']);
         })
         .catch((err) => {
