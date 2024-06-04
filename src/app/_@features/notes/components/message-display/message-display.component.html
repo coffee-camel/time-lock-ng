@@ -1,6 +1,5 @@
 <div *ngIf="message; else noMessage">
   <div *ngIf="!isTimerFinished">
-    <!-- Timer Display Section -->
     <div class="timer-display">
       <mat-icon>lock</mat-icon>
       <div class="countdown">{{ timerDisplay }}</div>
@@ -8,10 +7,8 @@
   </div>
 
   <div *ngIf="isTimerFinished">
-    <!-- Message Content Section -->
     <div class="message-content">
-      <!-- Your message content here -->
-      <p>{{ message.content }}</p>
+      <p>{{ encryption.decrypt(message.content) }}</p>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
+import { EncryptionService } from './encryption.service';
 
 export interface Message {
   id?: string;
@@ -27,6 +28,7 @@ export interface Message {
   providedIn: 'root',
 })
 export class MessagesFirebaseService {
+  encryption = inject(EncryptionService);
   firestore = inject(Firestore);
   messagesCollection = collection(this.firestore, 'messages');
 
@@ -49,7 +51,7 @@ export class MessagesFirebaseService {
     const messageToCreate = {
       uid,
       title,
-      content,
+      content: this.encryption.encrypt(content),
       delayInMinutes,
     };
     const promise = addDoc(this.messagesCollection, messageToCreate).then(
