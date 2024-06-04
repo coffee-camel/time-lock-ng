@@ -112,4 +112,8 @@ export class NotesContainer implements OnInit {
   onTimerFinished(isTimerFinished: boolean) {
     this.state.status.isTimerFinished = isTimerFinished;
   }
+
+  onCancel() {
+    this.selectedMessage = null;
+  }
 }
