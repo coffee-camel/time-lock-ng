@@ -1,12 +1,11 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    projectId: 'timelock-b6fa1',
-    appId: '1:772583398496:web:ac9d6c3fc192f8be3df705',
-    storageBucket: 'timelock-b6fa1.appspot.com',
-    apiKey: 'AIzaSyARYrmgK3wssim_BNCfjbVgn1MLLKcDUwE',
-    authDomain: 'timelock-b6fa1.firebaseapp.com',
-    messagingSenderId: '772583398496',
-    measurementId: 'G-072LET2D1W',
-  }
+    apiKey: 'AIzaSyCDFLTJmii4etTsDDDfRDbrP5BGNfJ0Z3M',
+    authDomain: 'timelock-prod-6463f.firebaseapp.com',
+    projectId: 'timelock-prod-6463f',
+    storageBucket: 'timelock-prod-6463f.appspot.com',
+    messagingSenderId: '733961985684',
+    appId: '1:733961985684:web:fab9770fdc575241f21e81',
+  },
 };
