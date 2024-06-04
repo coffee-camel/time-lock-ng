@@ -4,7 +4,7 @@
       <mat-icon>lock</mat-icon>
       <div class="countdown">{{ timerDisplay }}</div>
     </div>
-    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button (click)="onCancel()" aria-label="Deselect current note button">Cancel</button>
   </div>
 
   <div *ngIf="isTimerFinished">

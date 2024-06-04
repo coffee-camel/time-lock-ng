@@ -69,6 +69,8 @@ export class MessageDisplayComponent {
   }
 
   onCancel() {
+    this._message = null;
+    this.timerDisplay = '';
     this.cancel.emit();
   }
 }
