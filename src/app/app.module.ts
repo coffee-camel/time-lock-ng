@@ -14,20 +14,11 @@ import { UserProfileComponent } from './_@features/user-profile/user-profile.com
 import { environment } from '_@environment';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    UserProfileComponent,
-  ],
+  declarations: [AppComponent, AboutComponent, UserProfileComponent],
   imports: [
     BrowserModule,
     SharedModule,
-    RouterModule.forRoot(APP_ROUTES, {
-      enableTracing: false,
-      onSameUrlNavigation: 'reload',
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled',
-    }),
+    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
   ],
   providers: [
     provideAnimationsAsync(),

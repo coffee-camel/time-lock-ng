@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { EncryptionService } from '_@core/encryption.service';
 import { Message } from '_@core/messagesFirebase.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { Message } from '_@core/messagesFirebase.service';
   styleUrl: './message-display.component.scss',
 })
 export class MessageDisplayComponent {
+  encryption = inject(EncryptionService)
+
   private _message: Message | null = null;
 
   @Output() timerFinished = new EventEmitter<boolean>();
