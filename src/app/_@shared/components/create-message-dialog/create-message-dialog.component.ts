@@ -2,6 +2,7 @@ import { Component, Inject, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '_@core/auth.service';
+import { EncryptionService } from '_@core/encryption.service';
 import {
   Message,
   MessagesFirebaseService,
@@ -15,10 +16,11 @@ import { Subscription } from 'rxjs';
 })
 export class CreateMessageDialogComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();
+  messageForm: FormGroup;
 
   authService = inject(AuthService);
-  messageForm: FormGroup;
   messagesService = inject(MessagesFirebaseService);
+  encryptionService = inject(EncryptionService);
 
   isEditMode: boolean = false;
 
@@ -30,7 +32,10 @@ export class CreateMessageDialogComponent implements OnDestroy {
 
     this.messageForm = new FormGroup({
       title: new FormControl(data?.title || '', Validators.required),
-      content: new FormControl(data?.content || '', Validators.required),
+      content: new FormControl(
+        this.encryptionService.decrypt(data?.content) || '',
+        Validators.required
+      ),
       delayInMinutes: new FormControl(data?.delayInMinutes || '', [
         Validators.required,
         Validators.min(1),
