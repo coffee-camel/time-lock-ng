@@ -4,6 +4,7 @@
       <mat-icon>lock</mat-icon>
       <div class="countdown">{{ timerDisplay }}</div>
     </div>
+    <button mat-raised-button (click)="onCancel()" aria-label="Deselect current note button">Cancel</button>
   </div>
 
   <div *ngIf="isTimerFinished">
@@ -13,5 +14,5 @@
   </div>
 </div>
 <ng-template #noMessage>
-  <p>Select a message to view its content.</p>
+  <p>Select a note to view its content.</p>
 </ng-template>

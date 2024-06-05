@@ -12,6 +12,7 @@ export class MessageDisplayComponent {
 
   private _message: Message | null = null;
 
+  @Output() cancel = new EventEmitter<void>();
   @Output() timerFinished = new EventEmitter<boolean>();
 
   @Input()
@@ -65,5 +66,11 @@ export class MessageDisplayComponent {
 
   clearInterval(): void {
     clearInterval(this.timerInterval);
+  }
+
+  onCancel() {
+    this._message = null;
+    this.timerDisplay = '';
+    this.cancel.emit();
   }
 }
