@@ -16,7 +16,7 @@
     background-color: #e0e0e0;
   }
 
-  .message-header {
+  .note-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,7 +25,7 @@
       margin-bottom: 0;
     }
 
-    .message-timer {
+    .note-timer {
       display: flex;
       align-items: baseline;
       font-size: 0.8em;

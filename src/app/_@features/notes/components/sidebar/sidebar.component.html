@@ -1,15 +1,15 @@
-<div class="sidebar" [ngClass]="{ 'no-items': messages.length === 0 }">
-  <ng-container *ngIf="messages.length > 0; else noNotes">
+<div class="sidebar" [ngClass]="{ 'no-items': notes.length === 0 }">
+  <ng-container *ngIf="notes.length > 0; else noNotes">
     <div 
-      *ngFor="let message of messages"
+      *ngFor="let note of notes"
       class="sidebar-item" 
-      [ngClass]="{ 'selected': selectedMessage === message }"
-      (click)="selectMessage(message)">
-      <div class="message-header">
-        <p>{{ message.title }}</p>
-        <div class="message-timer">
+      [ngClass]="{ 'selected': selectedNote === note }"
+      (click)="selectNote(note)">
+      <div class="note-header">
+        <p>{{ note.title }}</p>
+        <div class="note-timer">
           <mat-icon>lock</mat-icon>
-          <span>{{ getFormattedDelay(message.delayInMinutes) }}</span>
+          <span>{{ getFormattedDelay(note.delayInMinutes) }}</span>
         </div>
       </div>
     </div>

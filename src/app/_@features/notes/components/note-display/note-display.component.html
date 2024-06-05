@@ -1,4 +1,4 @@
-<div *ngIf="message; else noMessage">
+<div *ngIf="note; else noNote">
   <div *ngIf="!isTimerFinished">
     <div class="timer-display">
       <mat-icon>lock</mat-icon>
@@ -8,11 +8,11 @@
   </div>
 
   <div *ngIf="isTimerFinished">
-    <div class="message-content">
-      <p>{{ encryption.decrypt(message.content) }}</p>
+    <div class="note-content">
+      <p>{{ encryption.decrypt(note.content) }}</p>
     </div>
   </div>
 </div>
-<ng-template #noMessage>
+<ng-template #noNote>
   <p>Select a note to view its content.</p>
 </ng-template>

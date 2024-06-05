@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Message } from '_@core/messagesFirebase.service';
+import { Note } from '_@core/notesFirebase.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -10,7 +10,7 @@ export class TopBarComponent {
   @Output() create = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
-  @Input() selectedMessage: Message | null = null;
+  @Input() selectedNote: Note | null = null;
   @Input() timerFinished: boolean = false;
 
   createNote() {

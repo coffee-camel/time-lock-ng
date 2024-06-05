@@ -15,7 +15,7 @@ import {
 import { Observable, from } from 'rxjs';
 import { EncryptionService } from './encryption.service';
 
-export interface Message {
+export interface Note {
   id?: string;
   uid?: string;
   title: string;
@@ -27,56 +27,56 @@ export interface Message {
 @Injectable({
   providedIn: 'root',
 })
-export class MessagesFirebaseService {
+export class NotesFirebaseService {
   encryption = inject(EncryptionService);
   firestore = inject(Firestore);
-  messagesCollection = collection(this.firestore, 'messages');
+  notesCollection = collection(this.firestore, 'messages');
 
   constructor() {}
 
-  getMessages(uid: string): Observable<Message[]> {
-    const q = query(this.messagesCollection, where('uid', '==', uid));
+  getNotes(uid: string): Observable<Note[]> {
+    const q = query(this.notesCollection, where('uid', '==', uid));
 
     return collectionData(q, {
       idField: 'id',
-    }) as Observable<Message[]>;
+    }) as Observable<Note[]>;
   }
 
-  addMessage(
+  addNote(
     uid: string,
     title: string,
     content: string,
     delayInMinutes: number
   ): Observable<string> {
-    const messageToCreate = {
+    const noteToCreate = {
       uid,
       title,
       content: this.encryption.encrypt(content),
       delayInMinutes,
     };
-    const promise = addDoc(this.messagesCollection, messageToCreate).then(
+    const promise = addDoc(this.notesCollection, noteToCreate).then(
       (response) => response.id
     );
     return from(promise);
   }
 
-  editMessage(
-    messageId: string,
+  editNote(
+    noteId: string,
     dataToUpdate: { title: string; content: string; delayInMinutes: number }
   ): Observable<void> {
-    const docRef = doc(this.firestore, 'messages/' + messageId);
+    const docRef = doc(this.firestore, 'messages/' + noteId);
     const promise = setDoc(docRef, dataToUpdate, { merge: true });
     return from(promise);
   }
 
-  removeMessage(messageId: string | undefined): Observable<void> {
-    const docRef = doc(this.firestore, 'messages/' + messageId);
+  removeNote(noteId: string | undefined): Observable<void> {
+    const docRef = doc(this.firestore, 'messages/' + noteId);
     const promise = deleteDoc(docRef);
     return from(promise);
   }
 
-  getMessage(messageId: string) {
-    const docRef = doc(this.firestore, 'messages/' + messageId);
+  getNote(noteId: string) {
+    const docRef = doc(this.firestore, 'messages/' + noteId);
     const promise = getDoc(docRef);
     return from(promise);
   }

@@ -10,7 +10,7 @@
     <button
       mat-icon-button
       (click)="deleteNote()"
-      [disabled]="!selectedMessage"
+      [disabled]="!selectedNote"
       aria-label="Delete Selected Note Button"
     >
       <mat-icon>delete</mat-icon>
@@ -21,7 +21,7 @@
     <button
       mat-icon-button
       (click)="editNote()"
-      [disabled]="!selectedMessage || !timerFinished"
+      [disabled]="!selectedNote || !timerFinished"
       aria-label="Edit Selected Note Button"
     >
       <mat-icon>edit</mat-icon>
