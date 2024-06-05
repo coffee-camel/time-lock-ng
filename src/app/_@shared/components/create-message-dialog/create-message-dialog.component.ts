@@ -38,7 +38,7 @@ export class CreateMessageDialogComponent implements OnDestroy {
       ),
       delayInMinutes: new FormControl(data?.delayInMinutes || '', [
         Validators.required,
-        Validators.min(1),
+        Validators.min(0.1),
       ]),
     });
   }
