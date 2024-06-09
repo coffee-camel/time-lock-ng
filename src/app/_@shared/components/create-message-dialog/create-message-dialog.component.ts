@@ -30,12 +30,13 @@ export class CreateMessageDialogComponent implements OnDestroy {
   ) {
     this.isEditMode = !!data;
 
+    const content = data?.content
+      ? this.encryptionService.decrypt(data.content)
+      : '';
+
     this.messageForm = new FormGroup({
       title: new FormControl(data?.title || '', Validators.required),
-      content: new FormControl(
-        this.encryptionService.decrypt(data?.content) || '',
-        Validators.required
-      ),
+      content: new FormControl(content, Validators.required),
       delayInMinutes: new FormControl(data?.delayInMinutes || '', [
         Validators.required,
         Validators.min(1),
