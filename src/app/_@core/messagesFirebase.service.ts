@@ -64,6 +64,14 @@ export class MessagesFirebaseService {
     messageId: string,
     dataToUpdate: { title: string; content: string; delayInMinutes: number }
   ): Observable<void> {
+    // Encrypt the content before updating
+    const encryptedContent = this.encryption.encrypt(dataToUpdate.content);
+
+    // Create a new object with the encrypted content
+    const updatedData = {
+      ...dataToUpdate,
+      content: encryptedContent,
+    };
     const docRef = doc(this.firestore, 'messages/' + messageId);
     const promise = setDoc(docRef, dataToUpdate, { merge: true });
     return from(promise);
