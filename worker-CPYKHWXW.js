@@ -1,0 +1,1 @@
+var t;addEventListener("message",({data:e})=>{e.action==="start"?i(e.countdownMilliseconds):e.action==="stop"&&n()});function i(e){t=setInterval(()=>{e-=1e3,e<0?(postMessage({action:"finished"}),clearInterval(t)):postMessage({action:"tick",countdownMilliseconds:e})},1e3)}function n(){clearInterval(t)}
