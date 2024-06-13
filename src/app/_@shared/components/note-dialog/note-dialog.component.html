@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>{{ isEditMode ? "Edit Note" : "Create Note" }}</h2>
-<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
       <input matInput formControlName="title" placeholder="Title" />
-      <mat-error *ngIf="messageForm.get('title')?.invalid"
+      <mat-error *ngIf="noteForm.get('title')?.invalid"
         >Title is required</mat-error
       >
     </mat-form-field>
@@ -13,7 +13,7 @@
         formControlName="content"
         placeholder="Content"
       ></textarea>
-      <mat-error *ngIf="messageForm.get('content')?.invalid"
+      <mat-error *ngIf="noteForm.get('content')?.invalid"
         >Content is required</mat-error
       >
     </mat-form-field>
@@ -32,13 +32,13 @@
           >help_outline</mat-icon
         >
       </div>
-      <mat-error *ngIf="messageForm.get('delayInMinutes')?.invalid">
+      <mat-error *ngIf="noteForm.get('delayInMinutes')?.invalid">
         Delay in Minutes is required and must be at least 1
       </mat-error>
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button [disabled]="!messageForm.valid" type="submit">
+    <button mat-button [disabled]="!noteForm.valid" type="submit">
       {{ isEditMode ? "Update" : "Create" }}
     </button>
     <button mat-button (click)="onCancel()">Cancel</button>

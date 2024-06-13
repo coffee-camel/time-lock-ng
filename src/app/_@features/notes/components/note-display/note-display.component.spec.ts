@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageDisplayComponent } from './message-display.component';
+import { MessageDisplayComponent } from './note-display.component';
 
 describe('MessageDisplayComponent', () => {
   let component: MessageDisplayComponent;

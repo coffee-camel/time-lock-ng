@@ -4,29 +4,29 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '_@core/auth.service';
 import { EncryptionService } from '_@core/encryption.service';
 import {
-  Message,
-  MessagesFirebaseService,
-} from '_@core/messagesFirebase.service';
+  Note,
+  NotesFirebaseService,
+} from '_@core/notesFirebase.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-create-message-dialog',
-  templateUrl: './create-message-dialog.component.html',
-  styleUrl: './create-message-dialog.component.scss',
+  selector: 'app-note-dialog',
+  templateUrl: './note-dialog.component.html',
+  styleUrl: './note-dialog.component.scss',
 })
-export class CreateMessageDialogComponent implements OnDestroy {
+export class NoteDialogComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();
-  messageForm: FormGroup;
+  noteForm: FormGroup;
 
   authService = inject(AuthService);
-  messagesService = inject(MessagesFirebaseService);
+  notesFirebaseService = inject(NotesFirebaseService);
   encryptionService = inject(EncryptionService);
 
   isEditMode: boolean = false;
 
   constructor(
-    private dialogRef: MatDialogRef<CreateMessageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Message
+    private dialogRef: MatDialogRef<NoteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Note
   ) {
     this.isEditMode = !!data;
 
@@ -34,18 +34,18 @@ export class CreateMessageDialogComponent implements OnDestroy {
       ? this.encryptionService.decrypt(data.content)
       : '';
 
-    this.messageForm = new FormGroup({
+    this.noteForm = new FormGroup({
       title: new FormControl(data?.title || '', Validators.required),
       content: new FormControl(content, Validators.required),
       delayInMinutes: new FormControl(data?.delayInMinutes || '', [
         Validators.required,
-        Validators.min(1),
+        Validators.min(0.1),
       ]),
     });
   }
 
   onSubmit() {
-    if (this.messageForm.valid) {
+    if (this.noteForm.valid) {
       if (this.isEditMode) {
         this.editExistingNote();
       } else {
@@ -55,13 +55,13 @@ export class CreateMessageDialogComponent implements OnDestroy {
   }
 
   addNewNote() {
-    const { title, content, delayInMinutes } = this.messageForm.value;
+    const { title, content, delayInMinutes } = this.noteForm.value;
     this.subscription.add(
       this.authService.getCurrentUserId().subscribe((uid) => {
         if (uid) {
-          this.messagesService
-            .addMessage(uid, title, content, delayInMinutes)
-            .subscribe((addedMessageId) => {
+          this.notesFirebaseService
+            .addNote(uid, title, content, delayInMinutes)
+            .subscribe((addedNoteId) => {
               this.dialogRef.close(true);
             });
         }
@@ -70,10 +70,10 @@ export class CreateMessageDialogComponent implements OnDestroy {
   }
 
   editExistingNote() {
-    const { title, content, delayInMinutes } = this.messageForm.value;
+    const { title, content, delayInMinutes } = this.noteForm.value;
     if (this.data.id) {
-      this.messagesService
-        .editMessage(this.data.id, {
+      this.notesFirebaseService
+        .editNote(this.data.id, {
           title,
           content,
           delayInMinutes,

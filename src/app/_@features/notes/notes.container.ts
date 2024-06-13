@@ -3,12 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '_@core/auth.service';
 import {
-  Message,
-  MessagesFirebaseService,
-} from '_@core/messagesFirebase.service';
+  Note,
+  NotesFirebaseService,
+} from '_@core/notesFirebase.service';
 import {
   ConfirmDialogComponent,
-  CreateMessageDialogComponent,
+  NoteDialogComponent,
 } from '_@shared/components';
 import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-dialog.component';
 
@@ -17,11 +17,11 @@ import { ConfirmDialogData } from '_@shared/components/confirm-dialog/confirm-di
   styleUrl: './notes.container.scss',
 })
 export class NotesContainer implements OnInit {
-  messagesService = inject(MessagesFirebaseService);
+  notesFirebaseService = inject(NotesFirebaseService);
   authService = inject(AuthService);
 
-  messages: Message[] = [];
-  selectedMessage: Message | null = null;
+  notes: Note[] = [];
+  selectedNote: Note | null = null;
 
   public state: any = {
     model: {},
@@ -35,8 +35,8 @@ export class NotesContainer implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUserId().subscribe((uid) => {
       if (uid) {
-        this.messagesService.getMessages(uid).subscribe((messages) => {
-          this.messages = messages;
+        this.notesFirebaseService.getNotes(uid).subscribe((notes) => {
+          this.notes = notes;
         });
       }
     });
@@ -50,12 +50,12 @@ export class NotesContainer implements OnInit {
    *
    * @param message
    */
-  onMessageSelected(message: Message) {
-    this.selectedMessage = message;
+  onNoteSelected(note: Note) {
+    this.selectedNote = note;
   }
 
   onCreateNote() {
-    const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
+    const dialogRef = this.dialog.open(NoteDialogComponent, {
       width: '400px',
     });
 
@@ -69,10 +69,10 @@ export class NotesContainer implements OnInit {
   }
 
   onEditNote() {
-    if (this.selectedMessage) {
-      const dialogRef = this.dialog.open(CreateMessageDialogComponent, {
+    if (this.selectedNote) {
+      const dialogRef = this.dialog.open(NoteDialogComponent, {
         width: '400px',
-        data: this.selectedMessage,
+        data: this.selectedNote,
       });
 
       dialogRef.afterClosed().subscribe((result) => {
@@ -86,7 +86,7 @@ export class NotesContainer implements OnInit {
   }
 
   onDeleteNote() {
-    if (this.selectedMessage) {
+    if (this.selectedNote) {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         width: '400px',
         data: {
@@ -99,10 +99,10 @@ export class NotesContainer implements OnInit {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          this.messagesService
-            .removeMessage(this.selectedMessage?.id)
+          this.notesFirebaseService
+            .removeNote(this.selectedNote?.id)
             .subscribe(() => {
-              this.selectedMessage = null;
+              this.selectedNote = null;
             });
         }
       });
@@ -114,6 +114,6 @@ export class NotesContainer implements OnInit {
   }
 
   onCancel() {
-    this.selectedMessage = null;
+    this.selectedNote = null;
   }
 }

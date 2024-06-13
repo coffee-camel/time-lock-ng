@@ -1,4 +1,4 @@
-.messages-container {
+.notes-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -15,7 +15,7 @@ app-sidebar {
   overflow-y: auto;
 }
 
-app-message-display {
+app-note-display {
   width: 70%;
   padding: 20px;
 }

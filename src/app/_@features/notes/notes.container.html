@@ -1,21 +1,21 @@
-<div class="messages-container">
+<div class="notes-container">
   <app-top-bar
     (create)="onCreateNote()"
     (delete)="onDeleteNote()"
     (edit)="onEditNote()"
-    [selectedMessage]="selectedMessage"
+    [selectedNote]="selectedNote"
     [timerFinished]="state.status.isTimerFinished"
   ></app-top-bar>
   <div class="content-container">
     <app-sidebar
-      [messages]="messages"
-      [selectedMessage]="selectedMessage"
-      (messageSelected)="onMessageSelected($event)"
+      [notes]="notes"
+      [selectedNote]="selectedNote"
+      (noteSelected)="onNoteSelected($event)"
     ></app-sidebar>
-    <app-message-display
-      [message]="selectedMessage"
+    <app-note-display
+      [note]="selectedNote"
       (timerFinished)="onTimerFinished($event)"
       (cancel)="onCancel()"
-    ></app-message-display>
+    ></app-note-display>
   </div>
 </div>

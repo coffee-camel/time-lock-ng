@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Message } from '_@core/messagesFirebase.service';
+import { Note } from '_@core/notesFirebase.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,17 +7,17 @@ import { Message } from '_@core/messagesFirebase.service';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  @Input() messages: Message[] = [];
-  @Input() selectedMessage: Message | null = null;
-  @Output() messageSelected = new EventEmitter<Message>();
+  @Input() notes: Note[] = [];
+  @Input() selectedNote: Note | null = null;
+  @Output() noteSelected = new EventEmitter<Note>();
 
   /**
-   * Emits the selected message back to the parent messages container.
+   * Emits the selected note back to the parent notes container.
    * 
    * @param message 
    */
-  selectMessage(message: Message) {
-    this.messageSelected.emit(message);
+  selectNote(note: Note) {
+    this.noteSelected.emit(note);
   }
 
   getFormattedDelay(delayInMinutes: number): string {
